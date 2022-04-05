@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version '2.6.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
-    id 'net.ltgt.apt' version '0.21'
 }
 
 group = 'ua.helper'
@@ -17,6 +16,7 @@ configurations {
 
 ext {
     mapstructVersion = "1.5.0.RC1"
+    set('testcontainersVersion', "1.16.2")
 }
 
 repositories {
@@ -31,10 +31,17 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation "org.testcontainers:testcontainers:1.16.3"
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     testImplementation "org.testng:testng:6.10", "org.easytesting:fest-assert:1.4"
     annotationProcessor "org.mapstruct:mapstruct-processor:1.5.0.RC1"
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation "org.testcontainers:postgresql:1.16.3"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+    }
 }
 
 tasks.named('test') {
