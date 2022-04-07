@@ -2,7 +2,7 @@ package ua.helper.humanhelper.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.helper.humanhelper.mapper.HomeMapper;
+import ua.helper.humanhelper.mapper.EntityMapper;
 import ua.helper.humanhelper.model.Home;
 import ua.helper.humanhelper.model.dto.HomeDto;
 import ua.helper.humanhelper.repository.HomeRepository;
@@ -27,12 +27,12 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Home findById(long id) {
+    public Home findById(Long id) {
         return homeRepository.getById(id);
     }
 
     @Override
-    public void updateHome(HomeDto homeDto, long id) {
+    public void updateHome(HomeDto homeDto, Long id) {
         Optional<Home> homeOptional = homeRepository.findById(id);
         homeOptional.ifPresent(home -> {
             home.setLocation(homeDto.getLocation());
@@ -44,13 +44,13 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Home saveHome(HomeDto homeDto, long id) {
-        return homeRepository.save(HomeMapper.INSTANCE.HomeDtoToHome(homeDto));
+    public Home saveHome(HomeDto homeDto) {
+        return homeRepository.save(EntityMapper.INSTANCE.HomeDtoToHome(homeDto));
     }
 
 
     @Override
-    public void deleteHome(long id) {
+    public void deleteHome(Long id) {
         homeRepository.delete(findById(id));
     }
 }

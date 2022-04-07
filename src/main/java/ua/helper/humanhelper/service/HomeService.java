@@ -9,11 +9,11 @@ public interface HomeService {
 
     List<Home> findAll();
 
-    void updateHome(HomeDto homeDto, long id);
+    void updateHome(HomeDto homeDto, Long id);
 
-    Home saveHome(HomeDto homeDto, long id);
+    Home saveHome(HomeDto homeDto);
 
-    Home findById(long id);
+    Home findById(Long id);
 
-    void deleteHome(long id);
+    void deleteHome(Long id);
 }
