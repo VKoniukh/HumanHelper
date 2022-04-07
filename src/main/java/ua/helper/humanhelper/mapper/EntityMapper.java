@@ -6,9 +6,9 @@ import ua.helper.humanhelper.model.Home;
 import ua.helper.humanhelper.model.dto.HomeDto;
 
 @Mapper
-public interface HomeMapper {
+public interface EntityMapper {
 
-    HomeMapper INSTANCE = Mappers.getMapper(HomeMapper.class);
+    EntityMapper INSTANCE = Mappers.getMapper(EntityMapper.class);
 
     HomeDto HomeToHomeDto(Home home);
 
