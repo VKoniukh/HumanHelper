@@ -1,6 +1,5 @@
 package ua.helper.humanhelper.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.helper.humanhelper.mapper.EntityMapper;
 import ua.helper.humanhelper.model.Home;
@@ -14,12 +13,13 @@ import java.util.Optional;
 @Service
 public class HomeServiceImpl implements HomeService {
 
-    @Autowired
-    public HomeServiceImpl(HomeRepository homeRepository) {
+    public HomeServiceImpl(HomeRepository homeRepository, EntityMapper entityMapper) {
         this.homeRepository = homeRepository;
+        this.entityMapper = entityMapper;
     }
 
     private final HomeRepository homeRepository;
+    private final EntityMapper entityMapper;
 
     @Override
     public List<Home> findAll() {
@@ -45,7 +45,7 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public Home saveHome(HomeDto homeDto) {
-        return homeRepository.save(EntityMapper.INSTANCE.HomeDtoToHome(homeDto));
+        return homeRepository.save(entityMapper.homeDtoToHome(homeDto));
     }
 
 

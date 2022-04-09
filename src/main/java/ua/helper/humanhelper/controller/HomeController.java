@@ -15,17 +15,16 @@ import java.util.stream.Collectors;
 public class HomeController {
 
     private final EntityMapper homeMapper;
-
     private final HomeService homeService;
 
     @GetMapping("/home")
     public List<HomeDto> getAllHomes() {
-        return homeService.findAll().stream().map(homeMapper::HomeToHomeDto).collect(Collectors.toList());
+        return homeService.findAll().stream().map(homeMapper::homeToHomeDto).collect(Collectors.toList());
     }
 
     @GetMapping("/home/{id}")
     public HomeDto getHomeById(@PathVariable("id") Long id) {
-        return homeMapper.HomeToHomeDto(homeService.findById(id));
+        return homeMapper.homeToHomeDto(homeService.findById(id));
     }
 
     @PostMapping("/home")
@@ -38,7 +37,7 @@ public class HomeController {
         homeService.updateHome(homeDto, id);
     }
 
-    @DeleteMapping("/home")
+    @DeleteMapping("/home/{id}")
     public void deleteHome(@PathVariable("id") Long id) {
         homeService.deleteHome(id);
     }
