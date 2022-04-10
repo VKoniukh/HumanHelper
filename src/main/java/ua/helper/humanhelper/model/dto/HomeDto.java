@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 @Setter
 public class HomeDto {
 
+  private Long id;
+
     private BigDecimal price;
 
     private String location;
