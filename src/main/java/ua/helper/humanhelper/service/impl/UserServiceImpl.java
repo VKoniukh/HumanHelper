@@ -1,7 +1,6 @@
 package ua.helper.humanhelper.service.impl;
 
 import ua.helper.humanhelper.mapper.EntityMapper;
-import ua.helper.humanhelper.model.CustomOAuth2User;
 import ua.helper.humanhelper.model.User;
 import org.springframework.stereotype.Service;
 import ua.helper.humanhelper.model.dto.UserDto;
@@ -22,20 +21,6 @@ public class UserServiceImpl implements UserService {
 
     private final EntityMapper entityMapper;
     private final UserRepository userRepository;
-
-    @Override
-    public void processOAuthPostLogin(CustomOAuth2User oathUser) {
-        User existUser = userRepository.findUserByEmail(oathUser.getEmail());
-
-        if (existUser == null) {
-            User newUser = new User();
-            newUser.setEmail(oathUser.getEmail());
-            newUser.setUsername(oathUser.getName());
-            newUser.setProvider(Provider.GOOGLE);
-
-            userRepository.save(newUser);
-        }
-    }
 
     @Override
     public List<User> findAll() {
