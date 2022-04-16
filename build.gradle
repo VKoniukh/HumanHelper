@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.6.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'groovy'
 }
 
 group = 'ua.helper'
@@ -24,20 +25,27 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.2-M1-groovy-4.0'
+    testImplementation 'org.spockframework:spock-core:2.2-M1-groovy-3.0'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.10'
+    testImplementation 'org.jeasy:easy-random-core:5.0.0'
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation "org.testcontainers:postgresql:1.16.3"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: '8.5.7'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation 'org.jeasy:easy-random-core:5.0.0'
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.6.3'
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.5.0.RELEASE'
+    implementation 'org.springframework.security:spring-security-web:5.6.1'
+    implementation 'org.springframework.security:spring-security-oauth2-resource-server:5.6.2'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.1'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     annotationProcessor "org.mapstruct:mapstruct-processor:1.5.0.RC1"
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation "org.testcontainers:postgresql:1.16.3"
-    implementation group: 'org.flywaydb', name: 'flyway-core', version: '8.5.7'
+
 }
 
 dependencyManagement {

@@ -1,11 +1,13 @@
-package ua.helper.humanhelper.spockTests.service
+package ua.helper.humanhelper.spockTests
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 import ua.helper.humanhelper.model.Home
 import ua.helper.humanhelper.model.dto.HomeDto
 import ua.helper.humanhelper.service.HomeService
 
+@SpringBootTest
 class HomeServiceTest extends Specification {
 
     @Autowired
