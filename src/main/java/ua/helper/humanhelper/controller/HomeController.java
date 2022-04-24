@@ -27,9 +27,9 @@ public class HomeController {
         return homeMapper.homeToHomeDto(homeService.findById(id));
     }
 
-    @PostMapping("/home")
-    public void saveHome(@RequestBody HomeDto homeDto) {
-        homeService.saveHome(homeDto);
+  @PostMapping("/home")
+  public HomeDto saveHome(@RequestBody HomeDto homeDto) {
+    return homeMapper.homeToHomeDto(homeService.saveHome(homeDto));
     }
 
     @PutMapping("/home/{id}")

@@ -1,5 +1,6 @@
 package ua.helper.humanhelper.service.impl;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ua.helper.humanhelper.mapper.EntityMapper;
 import ua.helper.humanhelper.model.Home;
@@ -23,7 +24,7 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public List<Home> findAll() {
-        return homeRepository.findAll();
+    return homeRepository.findAll(Sort.by("id"));
     }
 
     @Override
